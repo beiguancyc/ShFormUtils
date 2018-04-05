@@ -49,7 +49,7 @@ public class FormUtls {
         return true;
     }
 
-    public static HashMap<String, Object> formToObjectAndCheck(FormCheckInterface page) {
+    public static HashMap<String, Object> formToMapAndCheck(FormCheckInterface page) {
         HashMap<String, ViewAttribute> map = FormInit.allLineFormViewMap.get(page.getClass().getName());
         HashMap<String, Object> map1 = new HashMap<>();
         if (map == null) {
