@@ -49,7 +49,21 @@ public class FormUtls {
         return true;
     }
 
-
+    public static HashMap<String, Object> formToObjectAndCheck(FormCheckInterface page) { 
+        HashMap<String, ViewAttribute> map = FormInit.allLineFormViewMap.get(page.getClass().getName());
+        HashMap<String, Object> map1 = new HashMap<>();
+        if (map == null) {
+            return null;
+        }
+        if (!checkParam(page)) {
+            return null;
+        }
+        for (HashMap.Entry<String, ViewAttribute> entry : map.entrySet()) {
+            ViewAttribute v=entry.getValue();
+            map1.put(entry.getKey(),getContent(v.getView()) );
+        }
+        return map1;
+    }
 
     /**
      * 获取表单数据并且檢查
