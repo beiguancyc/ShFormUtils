@@ -58,6 +58,7 @@ public class FormSpinner extends TextView{
     /**
      * 设置选择器list
      */
+    Boolean isinit=true;
     public void setpvOptionsList(ArrayList<ViewData> options){
         this.options1Items =options;
 
@@ -74,6 +75,11 @@ public class FormSpinner extends TextView{
 
             @Override
             public void onOptionsSelect(int options1, int option2, int options3) {
+
+                if(isinit){
+                    options1=selectIndex;
+                    isinit=false;
+                }
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText();
                 FormSpinner.super.setText(tx);
@@ -87,7 +93,7 @@ public class FormSpinner extends TextView{
             }
         });
 
-        if(selectIndex>0&&selectIndex<options.size()){
+        if(selectIndex>=0&&selectIndex<options.size()){
             //默认选中第一个
             pvOptions.setSelecedItem(selectIndex);
         }
