@@ -244,7 +244,7 @@ public class FormUtls {
 
 
         if (v instanceof FormSpinner) {
-            int value = (int) ((FormSpinner) v).getSelectValue();
+            Object value =  ((FormSpinner) v).getSelectValue();
             return value+"";
         }
 
