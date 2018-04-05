@@ -49,6 +49,18 @@ public class FormUtls {
         return true;
     }
 
+    public static boolean mapToForm(Object page, HashMap hashMap) {
+        HashMap<String, ViewAttribute> map = FormInit.allLineFormViewMap.get(page.getClass().getName());
+        if (map == null||hashMap==null) {
+            return false;
+        }
+        for (HashMap.Entry<String, ViewAttribute> entry : map.entrySet()) {
+            ViewAttribute v=entry.getValue();
+            setContent(v.getView(),hashMap.get(entry.getKey()).toString());
+        }
+        return true;
+    }
+
     public static HashMap<String, Object> formToMapAndCheck(FormCheckInterface page) {
         HashMap<String, ViewAttribute> map = FormInit.allLineFormViewMap.get(page.getClass().getName());
         HashMap<String, Object> map1 = new HashMap<>();
