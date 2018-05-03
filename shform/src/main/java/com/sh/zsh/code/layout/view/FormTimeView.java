@@ -1,9 +1,11 @@
 package com.sh.zsh.code.layout.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
@@ -32,7 +34,7 @@ public class FormTimeView extends TextView{
         super(context);
     }
 
-    public FormTimeView(Context context, AttributeSet attrs) {
+    public FormTimeView(final Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.less_from_view, 0, 0);
@@ -40,6 +42,12 @@ public class FormTimeView extends TextView{
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Activity activity=(Activity) context;
+                InputMethodManager imm =  (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(imm != null) {
+                    imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(),
+                            0);
+                }
                 showPvTime();
             }
         });
